@@ -17,8 +17,18 @@ app.use(bodyParser.json());
 
 
 
-app.get('/api/:dateVal', function(req, res){
+app.get('/api/:dateVal?', function(req, res){
   var date = req.params.dateVal;
+  
+  // Check if date parameter is empty and return current time if it is
+  if (!date) {
+    var now = new Date();
+    return res.json({
+      unix: now.getTime(),
+      utc: now.toUTCString(),
+    });
+  }
+
   let unixr, utcr;
 
   if((new Date(parseInt(date))).toString() === "Invalid Date") {
@@ -29,15 +39,18 @@ app.get('/api/:dateVal', function(req, res){
   if(date.indexOf("-") === -1 && date.indexOf(' ') === -1 && (new Date(parseInt(date))).getTime() === parseInt(date)){
     unixr = parseInt(date);
     utcr = (new Date(unixr)).toUTCString();
-    res.json({unix: unixr, utc: utcr});
+      res.json({unix: unixr, utc: utcr});
   }
   else{
     unixr = (new Date(date)).getTime();
     utcr = (new Date(unixr)).toUTCString();
-    res.json({unix: unixr, utc: utcr});
+      res.json({unix: unixr, utc: utcr});
   }
+
   console.log('url works');
 })
+
+
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
