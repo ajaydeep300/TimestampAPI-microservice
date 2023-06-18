@@ -1,0 +1,27 @@
+{
+  "name": "index.js",
+  "version": "0.0.1",
+  "description": "timestamp challenege",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.0",
+    "express": "^4.12.4",
+    "nodemon": "^2.0.22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajaydeep300/timestampAPI-microservice.git"
+  },
+  "homepage": "https://github.com/ajaydeep300/timestampAPI-microservice.git#readme",
+  "author": "ajaydeep singh>",
+  "keywords": [
+    "node",
+    "express",
+    "freeCodeCamp"
+  ],
+  "license": "MIT"
+}
