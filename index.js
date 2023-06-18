@@ -19,23 +19,22 @@ app.use(bodyParser.json());
 
 app.get('/api/:dateVal', function(req, res){
   var date = req.params.dateVal;
-
   let unixr, utcr;
 
   if((new Date(parseInt(date))).toString() === "Invalid Date") {
     res.json({error: 'Invalid Date'});
+    return;
   }
 
-  else if(date.indexOf("-") < 0 && date.indexOf(' ') === -1 && (new Date(parseInt(date))).getTime() === parseInt(date)){
+  if(date.indexOf("-") === 1 && date.indexOf(' ') === -1 && (new Date(parseInt(date))).getTime() === parseInt(date)){
     unixr = parseInt(date);
     utcr = (new Date(unixr)).toUTCString();
-    res.json({unix: unixr, utc: utcr});
   }
   else{
     unixr = (new Date(date)).getTime();
     utcr = (new Date(unixr)).toUTCString();
-    res.json({unix: unixr, utc: utcr});
   }
+  res.json({unix: unixr, utc: utcr});
   console.log('url works');
 })
 // http://expressjs.com/en/starter/basic-routing.html
